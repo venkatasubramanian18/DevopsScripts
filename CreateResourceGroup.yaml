@@ -1,0 +1,26 @@
+#Create Resource Groups before VM creation
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Create Resource Group
+      azure_rm_resourcegroup:
+        name: AnsibleDevops-rg
+        location: westus
+      register: AnsibleDevopsrg
+    - debug: 
+        var: AnsibleDevopsrg
+
+    - name: Create virtual network
+      azure_rm_virtualnetwork:
+        resource_group: AnsibleDevops-rg
+        name: AnsibleDevops-rg-vNet
+        address_prefixes: "10.0.0.0/16"
+
+    - name: Add subnet
+      azure_rm_subnet:
+        resource_group: AnsibleDevops-rg
+        name: AnsibleDevops-rg-webSubnet
+        address_prefix: "10.0.1.0/24"
+        virtual_network: AnsibleDevops-rg-vNet
