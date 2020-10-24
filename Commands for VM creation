@@ -1,5 +1,11 @@
+First create resource group as below:
+https://raw.githubusercontent.com/venkatasubramanian18/devops/main/CreateResourceGroup.yaml
+Run CreateResourceGroup.yaml using "ansible-playbook CreateResourceGroup.yaml"
+
+Creating VM as below:
+CreateAzureVM.yaml
+https://raw.githubusercontent.com/venkatasubramanian18/devops/main/CreateAzureVM.yaml
+
+For getting the SSH:
 ssh-keygen -o
-
 cat ~/.ssh/id_rsa.pub     => For SSH-RSA
-
-ansible-playbook DeployAzureVM.yaml
