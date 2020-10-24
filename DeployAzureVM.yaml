@@ -29,7 +29,7 @@
       azure_rm_publicipaddress:
         resource_group: AnsibleDevops-rg
         allocation_method: Static
-        name: AnsibleDevops-rg-webPublicIP
+        name: DeploymentServer-Jenkins-Docker-Sonar-webPublicIP
       register: output_ip_address
 
     - name: Output public IP
@@ -39,7 +39,7 @@
     - name: Create Network Security Group
       azure_rm_securitygroup:
         resource_group: AnsibleDevops-rg
-        name: AnsibleDevops-rg-NSG
+        name: DeploymentServer-Jenkins-Docker-Sonar-NSG
         rules:
           - name: 'allow_rdp'
             protocol: Any
@@ -74,14 +74,14 @@
 
     - name: Create a network interface
       azure_rm_networkinterface:
-        name: AnsibleDevops-rg-webNic
+        name: DeploymentServer-Jenkins-Docker-Sonar-webNic
         resource_group: AnsibleDevops-rg
         virtual_network: AnsibleDevops-rg-vNet
         subnet_name: AnsibleDevops-rg-webSubnet
-        security_group: AnsibleDevops-rg-NSG
+        security_group: DeploymentServer-Jenkins-Docker-Sonar-NSG
         ip_configurations:
           - name: default
-            public_ip_address_name: AnsibleDevops-rg-webPublicIP
+            public_ip_address_name: DeploymentServer-Jenkins-Docker-Sonar-webPublicIP
             primary: True
 
 
@@ -95,7 +95,7 @@
         ssh_public_keys:
           - path: /home/azureuser/.ssh/authorized_keys
             key_data: < insert yor ssh public key here... open the cloudshell and "mkdir authorized_keys" "cd authorized_keys" "ssh-keygen" then just give spaces and get the sskey>
-        network_interfaces: AnsibleDevops-rg-webNic
+        network_interfaces: DeploymentServer-Jenkins-Docker-Sonar-webNic
         image:
           offer: UbuntuServer
           publisher: Canonical
