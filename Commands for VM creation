@@ -9,3 +9,16 @@ https://raw.githubusercontent.com/venkatasubramanian18/devops/main/CreateAzureVM
 For getting the SSH:
 ssh-keygen -o
 cat ~/.ssh/id_rsa.pub     => For SSH-RSA
+
+Inside cd ~/.ssh  
+get the file id_rsa 
+and copy it to DeployServer.pem
+
+Make it as protected mode:
+chmod 400 DeployServer.pem
+
+For connecting VM
+ssh -i DeployServer.pem azureuser@23.100.47.167
+
+
+
