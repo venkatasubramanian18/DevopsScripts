@@ -16,7 +16,6 @@
       azure_rm_subnet:
         resource_group: AnsibleDevops-rg
         name: AnsibleDevops-rg2-webSubnet
-        location: westus2
         address_prefix: "10.0.1.0/24"
         virtual_network: AnsibleDevops-rg2-vNet
 
