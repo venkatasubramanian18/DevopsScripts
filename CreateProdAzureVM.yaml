@@ -18,7 +18,7 @@
         name: AnsibleDevops-rg2-webSubnet
         location: westus2
         address_prefix: "10.0.1.0/24"
-        virtual_network: AAnsibleDevops-rg2-vNet
+        virtual_network: AnsibleDevops-rg2-vNet
 
     - name: Create public IP address
       azure_rm_publicipaddress:
