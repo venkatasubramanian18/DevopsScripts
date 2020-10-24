@@ -4,10 +4,26 @@
   connection: local
 
   tasks:
+  
+    - name: Create virtual network
+      azure_rm_virtualnetwork:
+        resource_group: AnsibleDevops-rg
+        name: AnsibleDevops-rg2-vNet
+        location: westus2
+        address_prefixes: "10.0.0.0/16"
+
+    - name: Add subnet
+      azure_rm_subnet:
+        resource_group: AnsibleDevops-rg
+        name: AnsibleDevops-rg2-webSubnet
+        location: westus2
+        address_prefix: "10.0.1.0/24"
+        virtual_network: AAnsibleDevops-rg2-vNet
 
     - name: Create public IP address
       azure_rm_publicipaddress:
         resource_group: AnsibleDevops-rg
+        location: westus2
         allocation_method: Static
         name: ProdServer-webPublicIP
       register: output_ip_address
@@ -19,6 +35,7 @@
     - name: Create Network Security Group
       azure_rm_securitygroup:
         resource_group: AnsibleDevops-rg
+        location: westus2
         name: ProdServer-NSG
         rules:
           - name: 'allow_rdp'
@@ -55,9 +72,10 @@
     - name: Create a network interface
       azure_rm_networkinterface:
         name: ProdServer-webNic
+        location: westus2
         resource_group: AnsibleDevops-rg
-        virtual_network: AnsibleDevops-rg-vNet
-        subnet_name: AnsibleDevops-rg-webSubnet
+        virtual_network: AnsibleDevops-rg2-vNet
+        subnet_name: AnsibleDevops-rg2-webSubnet
         security_group: ProdServer-NSG
         ip_configurations:
           - name: default
@@ -68,6 +86,7 @@
       azure_rm_virtualmachine:
         resource_group: AnsibleDevops-rg
         name: ProdServer
+        location: westus2
         vm_size: Standard_D2s_v3
         admin_username: azureuser
         ssh_password_enabled: false
