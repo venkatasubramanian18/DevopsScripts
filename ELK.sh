@@ -1,3 +1,5 @@
+#https://logz.io/blog/install-elk-stack-azure/
+
 #First, you need to add Elastic’s signing key so that the downloaded package can be verified 
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
