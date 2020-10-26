@@ -62,3 +62,9 @@ journalctl -u kibana.service
 #to clear the logs
 journalctl --vacuum-time=1s
 
+#Installing Beats
+sudo apt-get install metricbeat
+sudo service metricbeat start
+
+
+
