@@ -1,0 +1,4 @@
+gcloud container clusters get-credentials k8scluster --zone us-west2-a --project devops-294021
+
+gcloud container clusters ls
+
